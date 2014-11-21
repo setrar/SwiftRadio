@@ -5,7 +5,7 @@ Streaming Radio in Apple Swift
 
 ## Credits
 
-Mostly a rewrite of Hamed Hashemi `https://github.com/hamedh/Radio` in Apple Swift 
+Mostly a rewrite of Hamed Hashemi's `https://github.com/hamedh/Radio` in Apple Swift 
 
 ## License
 
