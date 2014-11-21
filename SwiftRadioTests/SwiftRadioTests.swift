@@ -8,8 +8,19 @@
 
 import UIKit
 import XCTest
-
 import SwiftRadio
+
+let streamUrl = "http://manager2.radioking.fr:8846/stream"
+
+class Player: RadioDelegate {
+    func updateBuffering(value: Bool) {}
+    func interruptRadio() {}
+    func resumeInterruptedRadio() {}
+    func networkChanged() {}
+    func connectProblem() {}
+    func audioUnplugged() {}
+    func metaTitleUpdated(title: String) {}
+}
 
 class SwiftRadioTests: XCTestCase {
     
@@ -24,9 +35,8 @@ class SwiftRadioTests: XCTestCase {
     }
     
     func testRadioConnection() {
-        // This is an example of a functional test case.
-        let radio = Radio()
-        XCTAssertTrue(radio.connect("toto", day:"tata"))
+        let player = Player(), radio = Radio()
+        XCTAssertTrue(radio.connect(streamUrl,delegate: player,gain: 1.0))
     }
     
     func testPerformanceExample() {

@@ -10,28 +10,43 @@
 import Foundation
 import AVFoundation
 
+public protocol RadioDelegate {
+    func updateBuffering(value: Bool)
+    func interruptRadio()
+    func resumeInterruptedRadio()
+    func networkChanged()
+    func connectProblem()
+    func audioUnplugged()
+    func metaTitleUpdated(title: String)
+}
+
 
 public class Radio {
-    
+
+    private let session     = AVAudioSession.sharedInstance()
+    private var d: RadioDelegate!
+
     public init() {
     }
     
-    public func connect(name: String, day: String)  -> Bool {
+    public func connect(url: String,delegate: RadioDelegate!, gain: Float)  -> Bool {
         
-        let urlResponse = NSHTTPURLResponse()
-        let session     = AVAudioSession.sharedInstance()
-        
+        self.d = delegate
+
         var activationError: NSError?
-        
-        let success = AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, withOptions: AVAudioSessionCategoryOptions() , error: &activationError)
+
+        let success = session.setCategory(
+              AVAudioSessionCategoryPlayback
+            , withOptions: AVAudioSessionCategoryOptions()
+            , error: &activationError)
         
         if !success {
             if let error = activationError {
-                println("write failure: \(error.localizedDescription)")
+                println("write network failure: \(error.localizedDescription)")
             }
         }
         
-        return false
+    return false
     }
 }
 
