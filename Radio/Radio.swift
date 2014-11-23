@@ -43,10 +43,11 @@ public class Radio {
         if !success {
             if let error = activationError {
                 println("write network failure: \(error.localizedDescription)")
+                return false
             }
         }
         
-    return false
+    return true
     }
 }
 
