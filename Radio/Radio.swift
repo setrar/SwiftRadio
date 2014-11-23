@@ -26,12 +26,12 @@ public class Radio {
     private let session     = AVAudioSession.sharedInstance()
     private var d: RadioDelegate!
 
-    public init() {
+    public init(delegate: RadioDelegate) {
+        self.d = delegate
     }
     
-    public func connect(url: String,delegate: RadioDelegate!, gain: Float)  -> Bool {
+    public func connect(url: String, gain: Float)  -> Bool {
         
-        self.d = delegate
 
         var activationError: NSError?
 

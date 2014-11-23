@@ -35,8 +35,8 @@ class SwiftRadioTests: XCTestCase {
     }
     
     func testRadioConnection() {
-        let player = Player(), radio = Radio()
-        XCTAssertTrue(radio.connect(streamUrl,delegate: player,gain: 1.0))
+        let player = Player(), radio = Radio(delegate: player)
+        XCTAssertTrue(radio.connect(streamUrl,gain: 1.0))
     }
     
     func testPerformanceExample() {
